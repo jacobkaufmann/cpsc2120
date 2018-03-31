@@ -1,0 +1,44 @@
+Jacob Kaufmann
+
+1.
+(5,)
+...(3,)
+......1,2,
+......3,4,
+...(7,9,)
+......5,6,
+......7,8,
+......9,10,
+
+2. 1 2 3 4 5 6 7 8 9 10
+
+3. The word static in the definition of BTreeNode means that the function can
+be called without an instance of a class and that the variable exists for the
+lifetime of the class and is held by all instances of that class.
+
+4. The meaning of this line is that the function void dump(int depth) is a 
+pure function and has no implementation at all in the BTreeNode class and all 
+implementation will be in a subclass or subclasses of BTreeNode.
+
+5. The insert in BInternal begins by finding the child position for the value 
+to be inserted. If no splitting is necessary in the node, shift the children 
+if necessary, assign the new child and key to the node and update the number
+of children, and if the node has too many children, create a new BInternal 
+and split the children between the node and the new BInternal as well as update
+the number of children and change the key value.  If splitting is necessary in
+the node, return nullptr.  
+
+6. The int &newKey is used to keep track of the address of the corresponding 
+key value that separates the values of the BTreeLeaf.  If the method returns 
+nullptr, nothing happens to the newKey.
+
+7. There is a 0 as a parameter because this line is calling the dump of the
+BTreeNode class which has an int parameter for the depth of the node so
+it is called on the root which has a depth of 0.
+
+8. The implementation is good because it utilizes a B-Tree for storing 
+the data, which is an efficient way of data storage.  The implementation is bad 
+because the inheritance is more useful for organization than sharing code since
+there is little code that the BInternal and BLeaf share.  Each of them have
+to do a separate implementation of the insert and dump methods while they only
+share a static constant (MAX) and a static funciton (indent).  
